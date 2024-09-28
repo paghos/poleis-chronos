@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Effettua una segnalazione - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>Segnalazione</b></h1>
+        <hr>
+        <!-- Aggiungi messaggi di avviso o errore qui se necessario -->
+
+        <form method="POST" action="/segnalazione">
+            <div class="form-group">
+                <label for="codice_identificativo"> Inserisci il codice identificativo ricevuto nella e-mail di conferma per aggiungere una segnalazione.</label>
+                <label> Ti ricordiamo che attraverso questo strumento potrai inviare una segnalazione esclusivamente per i servizi di <i>front-office</i> degli uffici.</label>
+                <label> Se vuoi segnalare una irregolarità in altri ambiti, ti invitiamo ad utilizzare gli appositi canali presenti sul sito web dell'ente.</label>
+                <input type="text" class="form-control" id="codice_identificativo" name="codice_identificativo" required>
+                <button type="button" class="btn btn-primary mt-2" id="caricaPrenotazione">Carica Prenotazione</button>
+            </div>
+            <div id="prenotazioneContainer" style="display: none;">
+                <!-- Campi per visualizzare la prenotazione -->
+                <hr>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="cognome">Cognome:</label>
+                    <input type="text" class="form-control" id="cognome" name="cognome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <!-- Aggiungi altri campi della prenotazione qui -->
+                <div class="form-group">
+                    <label for="segnalazione">Segnalazione (massimo 1000 caratteri):</label>
+                    <textarea class="form-control" id="segnalazione" name="segnalazione" rows="5" maxlength="1000" required></textarea>
+                </div>
+                <p>Le segnalazioni inviate verranno prese in carico da un operatore e <b>non</b> sono anonime.</p>
+                <button type="submit" class="btn btn-primary" id="inviaSegnalazione">Invia Segnalazione</button>
+            </div>
+        </form>
+    </div>
+
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#caricaPrenotazione').click(function() {
+                var codiceIdentificativo = $('#codice_identificativo').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/carica_prenotazione?codice_identificativo=' + codiceIdentificativo,
+                    success: function(response) {
+                        if (response) {
+
+                            $('#nome').val(response.nome);
+                            $('#cognome').val(response.cognome);
+                            $('#email').val(response.email);
+                            $('#segnalazione').val(response.segnalazione);
+							$('#nome').prop('readonly', true);
+							$('#cognome').prop('readonly', true);
+							$('#email').prop('readonly', true);
+							
+
+                            $('#prenotazioneContainer').show();
+
+
+                            if (response.segnalazione) {
+                                $('#segnalazione').prop('readonly', true);
+                                $('#inviaSegnalazione').prop('disabled', true);
+                            } else {
+                                $('#segnalazione').prop('readonly', false);
+                                $('#inviaSegnalazione').prop('disabled', false);
+                            }
+                        } else {
+
+                            alert('Prenotazione non trovata.');
+                        }
+                    },
+                    error: function(error) {
+
+                        alert('Si è verificato un errore durante il caricamento della prenotazione.');
+                    }
+                });
+            });
+        });
+    </script>
+
+<div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

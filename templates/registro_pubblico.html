@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registro pubblico delle prenotazioni - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1><b>Registro pubblico delle prenotazioni</b></h1>
+        <hr>
+		
+		        <p>In questa pagina viene mostrato lo storico delle prenotazioni.</p>
+				
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Docente accompagnatore</th>
+                    <th>Classe</th>
+                    <th>Dalle ore</th>
+					<th>Alle ore</th>
+                    <th>Giorno</th>
+                    <th>Prenotato da (cognome)</th>
+					<!-- Aggiungi il th mancante -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for prenotazione in prenotazioni %}
+                    <tr>
+                        <td>{{ prenotazione.codicefiscale }}</td>
+                        <td>{{ prenotazione.classe }}</td>
+                        <td>{{ prenotazione.ora_inizio }}</td>
+						<td>{{ prenotazione.ora_fine }}</td>
+                        <td>{{ prenotazione.giorno }}</td>
+						<td>{{ prenotazione.cognome }}</td>
+						<!-- Aggiungi il td mancante -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

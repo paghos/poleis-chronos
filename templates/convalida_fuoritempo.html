@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CONVALIDA Fuori tempo - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+    <style>
+        body {
+            background-color: #f744445d; /* Light green color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>🕜 Impossibile validare.</b></h1>
+        <hr>
+        
+        <p>Non abbiamo potuto validare la tua prenotazione. Le prenotazioni possono essere convalidate da 10 minuti prima fino a 10 minuti dopo l'orario stabilito. Attieniti a questi orari per validare la tua prenotazione. </p>
+        <p><b>Non ricordi l'orario della tua prenotazione? </b>Utilizza l'opzione 'Verifica prenotazione' per visualizzare i dettagli.</p>
+
+
+    </div>
+    <div style="height: 100px;"></div>
+    <script>
+        // Redirect to "/" after 60 seconds
+        setTimeout(function() {
+            window.location.href = "/kiosk";
+        }, 10000); // 60000 milliseconds = 60 seconds
+    </script>
+</body>
+{% endblock %}
+</html>

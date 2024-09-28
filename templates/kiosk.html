@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kiosk - Chronos</title>
+        {% extends "__style__.html" %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        {% block content %}
+        <style>
+            .reservation {
+                padding: 15px;
+                margin-bottom: 10px;
+                border: 3px solid #ddd;
+                background-color: #fff;
+            }
+            .reservation h2 {
+                margin: 0;
+                font-size: 24px;
+            }
+            .reservation p {
+                margin: 5px 0;
+                font-size: 18px;
+            }
+            .btn-full-width {
+                width: 100%;
+                display: block;
+            }
+            .page-specific .navbar-nav {
+        display: none; /* Hide the navbar items on specific page */
+    }
+        </style>
+  
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mb-4">
+                <button class="btn btn-dark btn-full-width">
+                    <h1>{{istituzione}}</h1>
+                </button>
+            </h1>
+
+            <h4 class="mb-4">
+                <button class="btn btn-secondary btn-full-width">
+                    <h5>Scegli l'ufficio per cui metterti in coda</h5>
+                </button>
+            </h4>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>
+                        <form action="/api/kiosk/aggiungi_prenotazione?ufficio=TARI" method="post">
+                            <button class="btn btn-success btn-full-width" type="submit">
+                                <br>
+                                <h2>🗑️ TARI</h2>
+                                <br>
+                            </button>
+                        </form>
+                    </h2>
+                </div>
+
+                <div class="col-md-4">
+                    <h2>
+                        <form action="/api/kiosk/aggiungi_prenotazione?ufficio=IMU" method="post">
+                            <button class="btn btn-danger btn-full-width" type="submit">
+                                <br>
+                                <h2>🏘️ IMU</h2>
+                                <br>
+                            </button>
+                        </form>
+                    </h2>
+
+                </div>
+
+                <div class="col-md-4">
+                    <h2>
+                        <form action="/api/kiosk/aggiungi_prenotazione?ufficio=ACQ" method="post">
+                            <button class="btn btn-primary btn-full-width" type="submit">
+                                <br>
+                                <h2>💧 Acquedotto</h2>
+                                <br>
+                            </button>
+                        </form>
+                    </h2>
+
+                </div>
+            </div>
+            <br>
+            <h4 class="mb-4">
+                <button class="btn btn-secondary btn-full-width">
+                    <h5>Hai già una prenotazione?</h5>
+                </button>
+            </h4>
+            <h4 class="mb-4">
+                <form action="/convalida" method="get">
+                    <button class="btn btn-warning btn-full-width" type="submit">
+                        <br>
+                        <h2>📲 Convalida</h2>
+                        <br>
+                    </button>
+                </form>
+
+            </h4>
+            <h4 class="mb-4">
+                <form action="/recupera_prenotazione" method="get">
+                    <button class="btn btn-info btn-full-width" type="submit">
+                        
+                        <h5>📲 Verifica dettagli prenotazione</h5>
+                        
+                    </button>
+                </form>
+
+            </h4>
+        </div>
+    </body>
+    {% endblock %}
+</html>

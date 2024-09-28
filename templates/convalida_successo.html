@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CONVALIDA Ok - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+    <style>
+        body {
+            background-color: #e0f4e0; /* Light green color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>☑️ Prenotazione validata.</b></h1>
+        <hr>
+        
+        <p>La tua prenotazione è stata validata, attendi il tuo turno in coda.</p>
+
+        
+    </div>
+    <div style="height: 100px;"></div>
+
+    <script>
+        // Redirect to "/" after 60 seconds
+        setTimeout(function() {
+            window.location.href = "/kiosk";
+        }, 10000); // 60000 milliseconds = 60 seconds
+    </script>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Effettua una prenotazione - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+<body>
+	<div class="container mt-5">
+        <h1><b>📝 Modulo di prenotazione</b></h1>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-{{ messages[0].split(' ')[0] }}">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/aggiungi_prenotazione">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="nome"><b>Nome</b></label>
+                    <input type="text" class="form-control" id="nome" name="nome" required value="{{nome_loggedin}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cognome"><b>Cognome</b></label>
+                    <input type="text" class="form-control" id="cognome" name="cognome" required value="{{cognome_loggedin}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="codicefiscale"><b>Codice fiscale</b></label>
+                <input type="text" class="form-control" id="codicefiscale" name="codicefiscale" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><b>Email</b></label>
+                <input type="email" class="form-control" id="email" name="email" required value="{{email_loggedin}}">
+            </div>
+            <div class="form-group">
+                <label for="ufficio"><b>Ufficio di riferimento</b></label>
+                <select class="form-control" id="ufficio" name="ufficio" required>
+                    <option value="IMU">IMU</option>
+                    <option value="TARI">TARI</option>
+                    <option value="Idrico">Idrico</option>
+                </select>
+            </div>            
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="giorno"><b>Giorno</b></label>
+                    <input type="date" class="form-control" id="giorno" name="giorno" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="ora_inizio"><b>Dalle ore</b></label>
+                    <select class="form-control" id="ora_inizio" name="ora_inizio" required>
+                        <option value="">Seleziona un orario</option>
+                        {% for hour in range(8, 19) %}
+                            <option value="{{ '%02d' % hour }}:00">{{ '%02d' % hour }}:00</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="ora_fine"><b>Alle ore</b></label>
+                    <select class="form-control" id="ora_fine" name="ora_fine" required>
+                        <option value="">Seleziona un orario</option>
+                        {% for hour in range(9, 20) %}
+                            <option value="{{ '%02d' % hour }}:00">{{ '%02d' % hour }}:00</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descrizione"><b>Qual è l'oggetto della tua prenotazione?</b></label>
+                <input type="text" class="form-control" id="descrizione" name="descrizione" required>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="regolamento" name="regolamento" required>
+                    <label class="form-check-label" for="conferma">
+                        Dichiaro di aver letto il <a href="/regolamento">regolamento</a> degli uffici prima di procedere.
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="segnalazione" name="segnalazione" required>
+                    <label class="form-check-label" for="segnalazione">
+                        Confermo di segnalare prontamente attraverso lo <a href="/segnalazione">strumento online</a> ogni attività insolita.
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Prenota</button>
+	    <div style="height: 100px;"></div>
+        </form>
+	
+
+
+</body>
+{% endblock %}
+</html>

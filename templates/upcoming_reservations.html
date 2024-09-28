@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prenotazioni</title>
+        {% extends "__style__.html" %}
+        {% block content %}
+        <style>
+            
+            .reservation {
+                padding: 15px;
+                margin-bottom: 10px;
+                border: 3px solid #ddd;
+                background-color: #fff;
+            }
+            .reservation h2 {
+                margin: 0;
+                font-size: 24px;
+            }
+            .reservation p {
+                margin: 5px 0;
+                font-size: 18px;
+            }
+            .btn-full-width {
+                width: 100%;
+                display: block;
+            }
+            .page-specific .navbar-nav {
+        display: none; /* Hide the navbar items on specific page */
+    }
+        </style>        
+        <script>
+            // ERRORE!!! MOSTRA SOLO LE PRENOTAZIONI CHE SI TROVANO DOPO ORA, NON MOSTRA QUELLE DI 10 MINUTI PRIMA, IN CASO DI RITARDO DEGLI UFFICI NON VENGONO MOSTRATE...
+
+            // Reload the page every 3 minutes (180000 milliseconds)
+            setInterval(function() {
+                window.location.reload();
+            }, 180000);
+
+            function updateRomeTime() {
+                const romeTimeElement = document.getElementById('rome-time');
+                const options = { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                const timeString = new Intl.DateTimeFormat('it-IT', options).format(new Date());
+                romeTimeElement.textContent = timeString;
+            }
+
+            // Update time on load and every second
+            document.addEventListener('DOMContentLoaded', function() {
+                updateRomeTime();
+                setInterval(updateRomeTime, 1000);
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mb-4">
+                <button class="btn btn-warning btn-full-width">
+                    <h1>Comune di Macondo</h1>
+                </button>
+            </h1>
+
+            <h4 class="mb-4">
+                <button class="btn btn-info btn-full-width">
+                    <i class="fas fa-clock"></i> <!-- Clock Icon -->
+                    <h5 id="rome-time" class="d-inline"> <!-- Orario -->
+                        <!-- Orario sarà visualizzato qui -->
+                    </h5>
+                    
+                </button>
+            </h4>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>
+                        <button class="btn btn-success btn-full-width">
+                            <h2>TARI</h2>
+                        </button>
+                    </h2>
+                    {% for prenotazione in prenotazioni if prenotazione.ufficio == 'TARI' %}
+                        <div class="reservation">
+                            <h3>{{ prenotazione.nome }} {{ prenotazione.cognome }}</h3>
+                            <p><strong>Start Time:</strong> {{ prenotazione.ora_inizio }}</p>
+                            <p><strong>End Time:</strong> {{ prenotazione.ora_fine }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-4">
+                    <h2>
+                        <button class="btn btn-danger btn-full-width">
+                            <h2>IMU</h2>
+                        </button>
+                    </h2>
+                    {% for prenotazione in prenotazioni if prenotazione.ufficio == 'IMU' %}
+                        <div class="reservation">
+                            <h3>{{ prenotazione.nome }} {{ prenotazione.cognome }}</h3>
+                            <p><strong>Start Time:</strong> {{ prenotazione.ora_inizio }}</p>
+                            <p><strong>End Time:</strong> {{ prenotazione.ora_fine }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-4">
+                    <h2>
+                        <button class="btn btn-primary btn-full-width">
+                            <h2>Acquedotto</h2>
+                        </button>
+                    </h2>
+                    {% for prenotazione in prenotazioni if prenotazione.ufficio == 'ACQUEDOTTO' %}
+                        <div class="reservation">
+                            <h3>{{ prenotazione.nome }} {{ prenotazione.cognome }}</h3>
+                            <p><strong>Start Time:</strong> {{ prenotazione.ora_inizio }}</p>
+                            <p><strong>End Time:</strong> {{ prenotazione.ora_fine }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+    {% endblock %}
+</html>

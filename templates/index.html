@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>{{ nomelab }} prenotazione online</b></h1>
+        <hr>
+		
+		        <h4>Benvenuto nello strumento online di prenotazione del {{istituto}}.</h4>
+				<p>Potrai prenotare appuntamenti presso gli uffici IMU, Tari e Idrico del {{ istituto }} in maniera agile.</p>
+		<hr>
+				<p>Prima di prenotare ti invitiamo a prendere visione del <a href="/regolamento">regolamento degli uffici</a> in cui ti recherai.</p>
+		<hr>
+		<h4 class="text-center"><b>Azioni rapide</b></h4>
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/aggiungi_prenotazione" class="btn btn-primary btn-block">Effettua una prenotazione adesso</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/regolamento" class="btn btn-primary btn-block">Leggi il regolamento</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <a href="/segnalazione" class="btn btn-primary btn-block">Effettua una segnalazione</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/recupera_prenotazione" class="btn btn-primary btn-block">Recupera o elimina una prenotazione</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/registro_pubblico" class="btn btn-primary btn-block">Registro pubblico prenotazioni</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/visualizza" class="btn btn-primary btn-block">Accesso amministratore</a>
+            </div>
+        </div>
+    </div>		
+<hr>
+
+<div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

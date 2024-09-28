@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CONVALIDA Non trovata - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+    <style>
+        body {
+            background-color: #f744445d; /* Light green color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>Prenotazione non trovata, assicurati di aver inserito il codice della prenotazione corretto.</b></h1>
+        <hr>
+        <p>Riprova utilizzando il codice della prenotazione corretto.</p>
+    </div>
+    <div style="height: 100px;"></div>
+    <script>
+        // Redirect to "/" after 60 seconds
+        setTimeout(function() {
+            window.location.href = "/kiosk";
+        }, 20000); // 60000 milliseconds = 60 seconds
+    </script>
+</body>
+{% endblock %}
+</html>

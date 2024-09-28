@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Convalida - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+    <style>
+    .page-specific .navbar-nav {
+        display: none; /* Hide the navbar items on specific page */
+    }        
+    </style>
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>Convalida</b></h1>
+        <hr>
+        <!-- Aggiungi messaggi di avviso o errore qui se necessario -->
+
+        <form method="POST" action="/convalida">
+            <div class="form-group">
+                <label for="codice_identificativo"> Inserisci il codice identificativo ricevuto nella e-mail di conferma per convalidare la prenotazione.</label>
+                <input type="text" class="form-control" id="codice_identificativo" name="codice_identificativo" required>
+                <button type="submit" class="btn btn-primary mt-2">Convalida</button>
+            </div>
+
+<div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

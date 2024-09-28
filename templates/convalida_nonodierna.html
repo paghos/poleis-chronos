@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CONVALIDA Non odierna - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+    <style>
+        body {
+            background-color: #f744445d; /* Light green color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>🗓️ La tua prenotazione non è per oggi.</b></h1>
+        <hr>
+        <p> Non è possibile validare la tua prenotazione. Puoi validarla da 10 minuti prima fino a 10 minuti dopo l'orario prenotato. Usa lo strumento "Verifica prenotazione" per vedere i dettagli della tua prenotazione.</p>
+    </div>
+    <div style="height: 100px;"></div>
+    <script>
+        // Redirect to "/" after 60 seconds
+        setTimeout(function() {
+            window.location.href = "/kiosk";
+        }, 40000); // 60000 milliseconds = 60 seconds
+    </script>
+</body>
+{% endblock %}
+</html>

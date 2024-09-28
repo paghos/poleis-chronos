@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Visualizza le prenotazioni - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+ 
+    <style>
+        .table {
+            width: 10%; /* Espande la tabella al 100% della larghezza del contenitore */
+            margin-left: auto; /* Allinea la tabella al margine sinistro */
+            margin-right: auto; /* Non aggiunge margini a destra */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>Visualizza Prenotazioni</b></h1>
+        <hr>
+        <p>Verifica tutti i dettagli delle prenotazioni esistenti.</p>
+        
+    </div>
+
+    <div class="container-fluid mt-5">
+
+        <table id="prenotazioniTable" class="table">
+            
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Email</th>
+                    <th>Ufficio</th>
+                    <th>Giorno</th>
+                    <th>Dalle ore</th>
+                    <th>Alle ore</th>
+                    <th>Descrizione</th>
+                    <th>Data e ora di prenotazione</th>
+                    <th>Docente accompagnatore</th>
+                    <th>Segnalazione</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prenotazione in prenotazioni %}
+                    <tr>
+                        <td>{{ prenotazione.codice_identificativo }} - {{prenotazione.stato}}</td>
+                        <td>{{ prenotazione.nome }}</td>
+                        <td>{{ prenotazione.cognome }}</td>
+                        <td>{{ prenotazione.email }}</td>
+                        <td>{{ prenotazione.ufficio }}</td>
+                        <td>{{ prenotazione.giorno }}</td>
+                        <td>{{ prenotazione.ora_inizio }}</td>
+                        <td>{{ prenotazione.ora_fine }}</td>
+                        <td>{{ prenotazione.descrizione }}</td>
+                        <td>{{ prenotazione.timestamp }}</td>
+                        <td>{{ prenotazione.codicefiscale }}</td>
+                        <td>{{ prenotazione.segnalazione }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

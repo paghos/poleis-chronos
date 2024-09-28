@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recupera una prenotazione - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1><b>Recupera Prenotazione</b></h1>
+        <hr>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="codice_identificativo" id="label-codice">Inserisci il codice identificativo ricevuto nella e-mail di conferma</label>
+                <input type="text" class="form-control" name="codice_identificativo" id="codice_identificativo" maxlength="10" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="ricerca-btn">Recupera</button>
+        </form>
+
+        {% if prenotazione %}
+        <h2 id="risultati-prenotazione">Risultati della Prenotazione</h2>
+		<h5>Hai effettuato una prenotazione per giorno <b>{{prenotazione.giorno}}</b> dalle ore <b>{{prenotazione.ora_inizio}}</b> alle ore <b>{{prenotazione.ora_fine}}</b>.<br> Il docente responsabile e accompagnatore è <b>{{prenotazione.codicefiscale}}</b> e vi recherete presso l'aula/laboratorio con la seguente motivazione <b>{{prenotazione.descrizione}}</b> insieme alla seguente classe/gruppo di studenti <b>{{prenotazione.classe}}</b>.<br> La prenotazione è stata effettuata per l'ufficio <b>{{prenotazione.nome}}</b> da <b>{{prenotazione.cognome}}</b> e indirizzo e-mail <b>{{prenotazione.email}}</b></h5>
+ 	    <div style="height: 70px;"></div>
+		<div class="d-flex align-items-center">
+			<h5 class="mr-3"><b>Hai cambiato idea e vuoi annullare la prenotazione?</b></h5>
+			<form method="POST" action="/elimina_prenotazione">
+				<input type="hidden" name="id_prenotazione" value="{{ prenotazione.id }}">
+				<button type="submit" class="btn btn-danger">Annulla la prenotazione</button>
+			</form>
+		</div>
+
+        <script>
+            document.getElementById('codice_identificativo').classList.add('d-none');
+            document.getElementById('ricerca-btn').classList.add('d-none');
+            document.getElementById('risultati-prenotazione').classList.add('d-none');
+            document.getElementById('label-codice').classList.add('d-none');
+        </script>
+        {% endif %}
+    </div>
+    <div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

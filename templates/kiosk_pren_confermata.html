@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prenotazione confermata - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>Prenotazione confermata! 😀</b></h1>
+        <hr>
+		
+		        <p>La tua prenotazione è stata confermata.</p>
+				<p>Il codice identificativo della tua prenotazione è il seguente: <b>{{prenotazione}}</b></p>
+				
+		 <hr>
+				
+				<h5><b>Cosa fare adesso?</b></h5> 				
+				<p>Attendi in coda il tuo turno.</p>
+				
+		 
+    </div>
+	<div style="height: 100px;"></div>
+</body>
+<script>
+    // Redirect to "/" after 60 seconds
+    setTimeout(function() {
+        window.location.href = "/kiosk";
+    }, 10000); // 60000 milliseconds = 60 seconds
+</script>
+{% endblock %}
+</html>

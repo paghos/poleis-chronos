@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prenotazione esistente - Chronos</title>
+    {% extends "__style__.html" %}
+
+    {% block content %}
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1><b>Non è stato possibile effettuare la prenotazione 😓</b></h1>
+        <hr>
+		
+		        <p> <b> Qualcuno ha effettuato una prenotazione prima di te che occupa l'ora desiderata. </b> </p>
+
+                <p>Consulta il registro delle prenotazioni qui di seguito e scegli un'altra data/ora.</p>
+
+                <p> <b>Ti aspettiamo in {{ nomelab }}!! 😊</b> </p>
+				
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Docente accompagnatore</th>
+                    <th>Classe</th>
+                    <th>Dalle ore</th>
+					<th>Alle ore</th>
+                    <th>Giorno</th>
+                    <th>Prenotato da (cognome)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prenotazione in prenotazioni %}
+                    <tr>
+                        <td>{{ prenotazione.docente_accompagnatore }}</td>
+                        <td>{{ prenotazione.classe }}</td>
+                        <td>{{ prenotazione.ora_inizio }}</td>
+						<td>{{ prenotazione.ora_fine }}</td>
+                        <td>{{ prenotazione.giorno }}</td>
+						<td>{{ prenotazione.cognome }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <div style="height: 100px;"></div>
+</body>
+{% endblock %}
+</html>

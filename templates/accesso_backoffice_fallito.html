@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Accesso Backoffice fallito - Chronos</title>
+    {% extends "__style__.html" %}
+    {% block content %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1><b>Accesso al Backoffice fallito! 🔐</b></h1>
+        <hr>
+        <p><b>Hai tentato di accedere al Backoffice, l'area riservata ai dipendenti e ai responsabili, ma non risulti in possesso dei privilegi per accedervi.</b></p>
+        <p>Verifica di aver effettuato l'accesso all'IDP con le credenziali corrette (indirizzo e-mail @poleis.cloud)</p>
+        <p><b>Stai usando le credenziali corrette? </b>Fornisci al responsabile del servizio la seguente stringa:</p>
+        <div class="container">
+            <pre><code>ID: {{sub}} || Utente: {{user}} || E-mail: {{email}}</code></pre>
+        </div>
+    </div>
+    <div style="height: 100px;"></div>
+
+    <script>
+        // Redirect to "/" after 60 seconds
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 60000); // 60000 milliseconds = 60 seconds
+    </script>
+</body>
+{% endblock %}
+</html>
